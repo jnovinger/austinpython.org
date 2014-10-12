@@ -70,9 +70,9 @@
                             src="{{ post.author_avatar_url }}"/>
                         <h3>{{ post.title }}</h3>
                         <div class="post-info">
-                            Published on {{ post.pub_date.date_string }} at
-                            {{ post.pub_date.time_string }} by
-                            {{ post.author.name }}
+                            Published on {{ post.pub_date|date }} at
+                            {{ post.pub_date|time }} by
+                            {{ post.author.get_full_name }}
                         </div>
                         <!-- will use summary when we have full post pages -->
                         <div class="post-content">
