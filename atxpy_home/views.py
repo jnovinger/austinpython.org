@@ -12,11 +12,17 @@ def posts():
 
 PostsMixin = context_mixin_factory(callback=posts)
 CompiledStaticMixin = context_mixin_factory({
-        "USE_COMPILED_STATIC": settings.USE_COMPILED_STATIC,
+    "USE_COMPILED_STATIC": settings.USE_COMPILED_STATIC,
+})
+SettingsContextMixin = context_mixin_factory({
+    'SITE_NAME': settings.SITE_NAME,
 })
 
 
-class IndexView(PostsMixin, CompiledStaticMixin, DetailView):
+class IndexView(PostsMixin,
+                CompiledStaticMixin,
+                SettingsContextMixin,
+                DetailView):
     model = Hero
     queryset = Hero.objects.all()
     template_name = "index.html"
